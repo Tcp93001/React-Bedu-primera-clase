@@ -5,7 +5,7 @@ const TodoList = () => {
     <div style={{padding: '5px 0'}}>
       <h1>Todo List</h1>
       <Todo />
-      <Todo done />
+      <Todo />
       <Todo />
       <Todo done />
       <Todo done />

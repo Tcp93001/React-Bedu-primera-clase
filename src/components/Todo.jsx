@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import '../styles/Todo.css'
 
 class Todo extends Component {
-  state = {
-    done: false
-  }
+  // state = {
+  //   done: false
+  // }
 
   // constructor(props) {
   //   super(props)
@@ -27,13 +27,8 @@ class Todo extends Component {
   render() {
     return (
       <div className={`todo-container ${this.props.done ? 'dim-completed' : ''}`}>
-        {/* {this.elementoTodo()}
-         */}
-        {
-          this.props.done ? <Checkmark /> : <div style={{width: '36px'}}></div>
-        }
-
-        <p className="list-item">Tarea por hacer</p>
+        <Checkmark done={this.props.done} />
+        <p className="list-item">{this.props.title}</p>
         <button className="delete">Borrar</button>
       </div>
     )
@@ -41,7 +36,8 @@ class Todo extends Component {
 }
 
 Todo.propTypes = {
-  done: PropTypes.bool
+  done: PropTypes.bool,
+  title: PropTypes.string.isRequired
 }
 
 export default Todo;

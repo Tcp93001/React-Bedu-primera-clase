@@ -28,16 +28,23 @@ class Todo extends Component {
     return (
       <div className={`todo-container ${this.props.done ? 'dim-completed' : ''}`}>
         <Checkmark done={this.props.done} />
-        <p className="list-item">{this.props.title}</p>
-        <button className="delete">Borrar</button>
+        <p onClick={e => this.props.toggleFn(e)} className="list-item">{this.props.title}</p>
+        <button
+          className="delete"
+          onClick={e => this.props.deleteFn(e)}
+        >
+          Borrar
+        </button>
       </div>
     )
   }
 }
 
 Todo.propTypes = {
-  done: PropTypes.bool,
-  title: PropTypes.string.isRequired
+  done: PropTypes.bool.isRequired,
+  title: PropTypes.string.isRequired,
+  toggleFn: PropTypes.func.isRequired,
+  deleteFn: PropTypes.func.isRequired
 }
 
 export default Todo;

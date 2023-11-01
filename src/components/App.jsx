@@ -1,21 +1,31 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import Header from './Header';
 import Form from './Form';
 import TodoList from './TodoList'
 import '../styles/App.css';
 
-class App extends Component {
-  state = {
-    todos: [],
-    todosOriginales: []
-    // showButton: true
-  }
+const App = () => {
+  // state = {
+  //   todos: []
+  // }
 
-  // handleClick = (event) => {
-  //   event.preventDefault()
+  const [todos, setTodos] = useState([
+    { title: "Tarea 1000000000", done: true },
+    { title: "Tarea 2", done: false },
+    { title: "Tarea 3", done: true },
+    { title: "Tarea 4", done: false },
+    { title: "Tarea 5", done: true },
+    { title: "Tarea 6", done: false },
+    { title: "Tarea 7", done: true },
+    { title: "Tarea 8", done: false },
+    { title: "Tarea 9", done: true },
+    { title: "Tarea 10", done: false },
+  ])
+
+  // componentDidMount() {
   //   this.setState({
   //     todos: [
-  //       { title: "Tarea 1", done: true },
+  //       { title: "Tarea 1000000000", done: true },
   //       { title: "Tarea 2", done: false },
   //       { title: "Tarea 3", done: true },
   //       { title: "Tarea 4", done: false },
@@ -26,84 +36,54 @@ class App extends Component {
   //       { title: "Tarea 9", done: true },
   //       { title: "Tarea 10", done: false },
   //     ],
-  //     // showButton: false
   //   })
   // }
 
-  componentDidMount() {
-    this.setState({
-      todos: [
-        { title: "Tarea 1000000000", done: true },
-        { title: "Tarea 2", done: false },
-        { title: "Tarea 3", done: true },
-        { title: "Tarea 4", done: false },
-        { title: "Tarea 5", done: true },
-        { title: "Tarea 6", done: false },
-        { title: "Tarea 7", done: true },
-        { title: "Tarea 8", done: false },
-        { title: "Tarea 9", done: true },
-        { title: "Tarea 10", done: false },
-      ],
-      todosOriginales: [
-        { title: "Tarea 1000000000", done: true },
-        { title: "Tarea 2", done: false },
-        { title: "Tarea 3", done: true },
-        { title: "Tarea 4", done: false },
-        { title: "Tarea 5", done: true },
-        { title: "Tarea 6", done: false },
-        { title: "Tarea 7", done: true },
-        { title: "Tarea 8", done: false },
-        { title: "Tarea 9", done: true },
-        { title: "Tarea 10", done: false },
-      ],
-    })
+  const handleClickDelete = (event, index) => {
+    const todosList = [...todos]
+    todosList.splice(index, 1)
+    setTodos(todosList)
   }
 
-  handleClickDelete = (event, index) => {
-    const todos = [...this.state.todos]
-    todos.splice(index, 1)
-    this.setState({ todos })
+  const handleClickToggleDone = (event, index) => {
+    const todosList = [...todos]
+    todosList[index].done = !todosList[index].done
+    setTodos(todosList)
   }
 
-  handleClickToggleDone = (event, index) => {
-    const todos = [...this.state.todos]
-    todos[index].done = !todos[index].done
-    this.setState({ todos })
+  // const handleClickReset = (e) => {
+  //   this.setState({
+  //     todos: [...todosOriginales]
+  //   })
+  // }
+
+  const handleAddTask = (title) => {
+    const itExists = todos.find(elem => elem.title === title)
+
+    if (itExists) {
+      alert('Esta tarea ya existe')
+      return
+    }
+
+    const todosList = [...todos]
+
+    setTodos(todosList.concat([{ title, done: false }]))
   }
 
-  handleClickReset = (e) => {
-    this.setState({
-      todos: [...this.state.todosOriginales]
-    })
-  }
+  return (
+    <div className="wrapper">
+      <div className="card-frame">
+        <Header counter={todos.length} />
+        <TodoList
+          tasks={todos}
+          toggleFn={handleClickToggleDone}
+          deleteFn={handleClickDelete}
+        />
+        <Form addTaskFn={handleAddTask} />
 
-
-  render() {
-    return (
-      <div className="wrapper">
-        <div className="card-frame">
-          <Header counter={this.state.todos.length} />
-          <TodoList
-            tasks={this.state.todos}
-            toggleFn={this.handleClickToggleDone}
-            deleteFn={this.handleClickDelete}
-          />
-          <Form />
-
-          <button onClick={this.handleClickReset}>Reestablecer tareas</button>
-
-
-          {/* {
-            this.state.showButton ?
-              <button onClick={this.handleClick}>
-                Inicializar
-              </button>
-              : null
-          } */}
-        </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default App;

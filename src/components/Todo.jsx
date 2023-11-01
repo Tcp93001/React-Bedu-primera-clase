@@ -1,43 +1,26 @@
-import { Component } from 'react';
 import Checkmark from './Checkmark';
 import PropTypes from 'prop-types';
 import '../styles/Todo.css'
 
-class Todo extends Component {
-  // state = {
-  //   done: false
-  // }
+const Todo = ({
+  done,
+  title,
+  toggleFn,
+  deleteFn
+}) => {
 
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     done: true
-  //   }
-  // }
-
-  // elementoTodo = () => {
-  //   return (
-  //     <>
-  //       <p className="list-item">Tarea por hacer</p>
-  //       <button className="delete">Borrar</button>
-  //     </>
-  //   )
-  // }
-
-  render() {
-    return (
-      <div className={`todo-container ${this.props.done ? 'dim-completed' : ''}`}>
-        <Checkmark done={this.props.done} />
-        <p onClick={e => this.props.toggleFn(e)} className="list-item">{this.props.title}</p>
-        <button
-          className="delete"
-          onClick={e => this.props.deleteFn(e)}
-        >
-          Borrar
-        </button>
-      </div>
-    )
-  }
+  return (
+    <div className={`todo-container ${done ? 'dim-completed' : ''}`}>
+      <Checkmark done={done} />
+      <p onClick={e => toggleFn(e)} className="list-item">{title}</p>
+      <button
+        className="delete"
+        onClick={e => deleteFn(e)}
+      >
+        Borrar
+      </button>
+    </div>
+  )
 }
 
 Todo.propTypes = {

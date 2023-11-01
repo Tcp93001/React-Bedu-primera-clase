@@ -22,6 +22,8 @@ const App = () => {
     { title: "Tarea 10", done: false },
   ])
 
+  const [show, setShow] = useState(true)
+
   // componentDidMount() {
   //   this.setState({
   //     todos: [
@@ -70,12 +72,18 @@ const App = () => {
     setTodos(todosList.concat([{ title, done: false }]))
   }
 
+  const filterTodos = todos.filter(elem => !elem.done || elem.done === show)
+
   return (
     <div className="wrapper">
       <div className="card-frame">
-        <Header counter={todos.length} />
+        <Header
+          counter={todos.length}
+          show={show}
+          toggleDone={setShow}
+        />
         <TodoList
-          tasks={todos}
+          tasks={filterTodos}
           toggleFn={handleClickToggleDone}
           deleteFn={handleClickDelete}
         />

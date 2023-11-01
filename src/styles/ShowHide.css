@@ -1,0 +1,11 @@
+.wrapper-tareas {
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
+  border: solid 1px #333333;
+
+}
+
+.tareas-completadas {
+  font-weight: 600;
+}

@@ -20,8 +20,4 @@ Header.propTypes = {
   toggleDone: PropTypes.func.isRequired
 }
 
-// Header.defaultProps = {
-//   counter: 5
-// }
-
 export default Header;

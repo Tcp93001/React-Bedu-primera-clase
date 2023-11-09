@@ -11,8 +11,8 @@ const TodoList = ({ tasks, toggleFn, deleteFn }) => {
             key={index}
             done={elem.done}
             title={elem.title}
-            deleteFn={(e) => deleteFn(e, index)}
-            toggleFn={(e) => toggleFn(e, index)}
+            deleteFn={(e) => deleteFn(e, elem.title)}
+            toggleFn={(e) => toggleFn(e, elem.title)}
           />
         )
 

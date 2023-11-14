@@ -1,36 +1,21 @@
 import { useEffect, useState } from 'react';
-import Header from './Header';
-import Form from './Form';
-import TodoList from './TodoList'
+import Home from './Home';
+import NotFound from './NotFound';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import '../styles/App.css';
+import TodoDetails from './TodoDetails';
 
 const App = () => {
 
   const [todos, setTodos] = useState([])
   const [show, setShow] = useState(true)
 
-  // Iniciando, setear en un useEffect mount el valor de todos
-  // useEffect(() => {
-  //   setTodos([
-  //     { title: "Tarea 1000000000", done: true },
-  //     { title: "Tarea 2", done: false },
-  //     { title: "Tarea 3", done: true },
-  //     { title: "Tarea 4", done: false },
-  //     { title: "Tarea 5", done: true },
-  //     { title: "Tarea 6", done: false },
-  //     { title: "Tarea 7", done: true },
-  //     { title: "Tarea 8", done: false },
-  //     { title: "Tarea 9", done: true },
-  //     { title: "Tarea 10", done: false },
-  //   ])
-  // }, [])
-
   // Usar este useEffect cuando llame al servidor
   // No usamos https, solo la version insegura
   const URL = 'http://localhost:3000/todos'
+
   useEffect(() => {
     const getData = async () => {
-      // si quiero agregar control de errores, agrego un bloque try/catch
       try{
         const response = await fetch(URL)
         const data = await response.json()
@@ -38,9 +23,6 @@ const App = () => {
       } catch(err) {
         console.log(err)
       }
-      // const response = await fetch(URL)
-      // const data = await response.json()
-      // setTodos(data)
     };
 
     getData();
@@ -98,11 +80,6 @@ const App = () => {
     } catch(err) {
       console.error(err)
     }
-
-    // const todosList = [...todos]
-    // const index = todosList.findIndex(elem => elem.title === title)
-    // if (index > -1) todosList[index].done = !todosList[index].done
-    // setTodos(todosList)
   }
 
   const handleAddTask = async (title) => {
@@ -112,8 +89,7 @@ const App = () => {
       return
     }
 
-    
-    // // Cambio en el servidor
+    // Cambio en el servidor
     const config = {
       url: URL,
       method: "POST"
@@ -135,31 +111,35 @@ const App = () => {
     } catch (error) {
       console.error(error);
     }
-
-    // const todosList = [...todos]
-    // setTodos(todosList.concat([{ title, done: false }]))
-
-
   }
 
   const filterTodos = todos.filter(elem => !elem.done || elem.done === show)
 
   return (
     <div className="wrapper">
-      <div className="card-frame">
-        <Header
-          counter={todos.length}
-          show={show}
-          toggleDone={setShow}
-        />
-        <TodoList
-          tasks={filterTodos}
-          toggleFn={handleClickToggleDone}
-          deleteFn={handleClickDelete}
-        />
-        <Form addTaskFn={handleAddTask} />
+      <BrowserRouter>
+        <div className="card-frame">
+          <Routes>
+            <Route path="/" exact element={
+              <Home
+                filtered={filterTodos}
+                show={show}
+                setShow={setShow}
+                handleClickDelete={handleClickDelete}
+                handleClickToggleDone={handleClickToggleDone}
+                handleAddTask={handleAddTask}
+              />
+            } />
+            <Route path="/details/:id" element={
+              <TodoDetails
+                url={URL}
+              />
+            } />
 
-      </div>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
     </div>
   )
 }

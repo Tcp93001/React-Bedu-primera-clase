@@ -17,7 +17,7 @@
         "this.props",
         "componentes statefull vs stateless"
       ],
-      "done": true
+      "done": false
     },
     {
       "id": 3,
@@ -26,7 +26,7 @@
         "componentDidMount",
         "this.setState"
       ],
-      "done": true
+      "done": false
     },
     {
       "id": 4,
@@ -35,7 +35,7 @@
         "useState",
         "componentes stateless"
       ],
-      "done": false
+      "done": true
     },
     {
       "id": 5,

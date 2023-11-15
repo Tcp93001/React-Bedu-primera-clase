@@ -8,7 +8,7 @@ const TodoList = ({ tasks, toggleFn, deleteFn }) => {
       {
         tasks.map((elem, index) =>
           <Todo
-            key={index}
+            key={index}    
             done={elem.done}
             title={elem.title}
             deleteFn={(e) => deleteFn(e, elem.title)}

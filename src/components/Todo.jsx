@@ -1,6 +1,8 @@
 import Checkmark from './Checkmark';
 import PropTypes from 'prop-types';
-import '../styles/Todo.css'
+import '../styles/Todo.css';
+import { Grid, Typography, Button } from '@mui/material'
+
 
 const Todo = ({
   done,
@@ -10,16 +12,17 @@ const Todo = ({
 }) => {
 
   return (
-    <div className={`todo-container ${done ? 'dim-completed' : ''}`}>
+    <Grid container className={`todo-container ${done ? 'dim-completed' : ''}`}>
       <Checkmark done={done} />
-      <p onClick={e => toggleFn(e)} className="list-item">{title}</p>
-      <button
-        className="delete"
+      <Typography onClick={e => toggleFn(e)} sx={{margin: '0 15px'}}>{title}</Typography>
+      <Button
+        color="warning"
+        variant='contained'
         onClick={e => deleteFn(e)}
       >
         Borrar
-      </button>
-    </div>
+      </Button>
+    </Grid>
   )
 }
 

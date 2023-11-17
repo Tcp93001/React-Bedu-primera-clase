@@ -35,7 +35,7 @@
         "useState",
         "componentes stateless"
       ],
-      "done": true
+      "done": false
     },
     {
       "id": 5,
@@ -70,6 +70,11 @@
         "así sin codear CSS, qué fácil!"
       ],
       "done": false
+    },
+    {
+      "title": "Ir por la leche",
+      "done": false,
+      "id": 9
     }
   ]
 }

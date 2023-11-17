@@ -1,15 +1,24 @@
 import ShowHide from './ShowHide';
 import PropTypes from 'prop-types';
-import '../styles/header.css'
+import '../styles/header.css';
+import Typography from '@mui/material/Typography';
 
 const Header = ({ counter = 0, show, toggleDone }) => {
 
   return (
     <div>
-      <h1 className="card-header-title header">
+      <Typography
+        variant='h1'
+        className='header'
+        sx={{
+          fontSize: '3.2em',
+          fontWeight: 'bold'
+        }}
+      >
         Hay {counter} tareas
-      </h1>
-      <ShowHide show={show} toggleDone={toggleDone}></ShowHide>
+      </Typography>
+
+      <ShowHide show={show} toggleDone={toggleDone} />
     </div>
   )
 };

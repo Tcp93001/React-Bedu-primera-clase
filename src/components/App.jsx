@@ -4,6 +4,7 @@ import NotFound from './NotFound';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import '../styles/App.css';
 import TodoDetails from './TodoDetails';
+import { Grid, Container } from '@mui/material'
 
 const App = () => {
 
@@ -116,31 +117,42 @@ const App = () => {
   const filterTodos = todos.filter(elem => !elem.done || elem.done === show)
 
   return (
-    <div className="wrapper">
+    <Container>
       <BrowserRouter>
         <div className="card-frame">
-          <Routes>
-            <Route path="/" exact element={
-              <Home
-                filtered={filterTodos}
-                show={show}
-                setShow={setShow}
-                handleClickDelete={handleClickDelete}
-                handleClickToggleDone={handleClickToggleDone}
-                handleAddTask={handleAddTask}
-              />
-            } />
-            <Route path="/details/:id" element={
-              <TodoDetails
-                url={URL}
-              />
-            } />
+          <Grid
+            container
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Grid item md={6} sm={8} xs={12} className="wrapper">
+              <Routes>
+                <Route path="/" exact element={
+                  <Home
+                    filtered={filterTodos}
+                    show={show}
+                    setShow={setShow}
+                    handleClickDelete={handleClickDelete}
+                    handleClickToggleDone={handleClickToggleDone}
+                    handleAddTask={handleAddTask}
+                  />
+                } />
+                <Route path="/details/:id" element={
+                  <TodoDetails
+                    url={URL}
+                  />
+                } />
 
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+
+            </Grid>
+          </Grid>
         </div>
       </BrowserRouter>
-    </div>
+
+    </Container>
   )
 }
 

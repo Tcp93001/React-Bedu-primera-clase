@@ -1,14 +1,20 @@
 import PropTypes from 'prop-types';
-import '../styles/ShowHide.css'
+import '../styles/ShowHide.css';
+import { Button } from '@mui/material'
 
 const ShowHide = ({ toggleDone, show }) => {
   return (
-    <div className="wrapper-tareas" onClick={e => toggleDone(!show)}>
+    <Button
+      variant='outlined'
+      size='medium'
+      onClick={e => toggleDone(!show)}
+      color='info'
+    >
       {!show ?
         <p className="tareas-completadas">Todas las tareas</p> :
         <p className="tareas-completadas">Solo tareas pendientes</p>
       }
-    </div>
+    </Button>
   )
 }
 

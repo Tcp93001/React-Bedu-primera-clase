@@ -9,10 +9,6 @@
   margin: 0 15px;
 }
 
-.delete {
-  background-color: orangered;
-}
-
 .dim-completed {
   opacity: 0.4;
 }

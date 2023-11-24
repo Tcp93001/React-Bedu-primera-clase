@@ -3,7 +3,7 @@ import Home from './Home';
 import NotFound from './NotFound';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import '../styles/App.css';
-import TodoDetails from './TodoDetails';
+import TodoDetails from './Todo/TodoDetails';
 import { Grid, Container } from '@mui/material'
 
 const App = () => {
@@ -28,7 +28,6 @@ const App = () => {
 
     getData();
   }, [])
-
 
   const handleClickDelete = (event, title) => {
     const todosList = [...todos]

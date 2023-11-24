@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Header from './Header';
 import Form from './Form';
-import TodoList from './TodoList';
+import TodoList from './Todo/TodoList';
 
 const Home = (props) => {
   return (

@@ -1,11 +1,12 @@
 import { useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom';
+import { Button } from '@mui/material';
+import { useNavigate, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const TodoDetails = (props) => {
   const [todo, setTodo] = useState({ title: "", details: []})
   const { id } = useParams();
-
+  const navigate = useNavigate();
   useEffect(() => {
     const getData = async () => {
       try {
@@ -36,6 +37,14 @@ const TodoDetails = (props) => {
           </div>)
         }
       </div>
+      <Button
+        sx={{marginTop: 2}}
+        variant="outlined"
+        color="primary"
+        onClick={() => navigate('/')}
+      >
+        Regresar
+      </Button>
     </>
   )
 }
